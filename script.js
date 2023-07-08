@@ -89,11 +89,16 @@ function updateCartTotal() {
   let cartRows = cartItemContainer.querySelectorAll(".cart-row");
   let total = 0;
 
+
   for (let i = 0; i < cartRows.length; i++) {
     //Add code here to loop in all the albums that is added to the cart and get the total amount
+      let cartRow = cartRows[i]
+      let priceElement = cartRow.querySelector('.cart-price');
+      let quantityElement = cartRow.querySelector('.cart-quantity-input');
+      let price = parseFloat(priceElement.innerText.replace('$', '')).toFixed(2);
+      let quantity = quantityElement.value
+      total = total + (price * quantity)
   }
-
   total = total.toFixed(2);
-
   document.querySelectorAll(".cart-total-price")[0].innerText = "$" + total;
 }
